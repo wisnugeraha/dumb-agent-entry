@@ -7,7 +7,7 @@ thing this agent did today, in the agent's own voice.
 import os
 
 
-MAX_CHARS = 200
+MAX_LINE_CHARS = 200  # the gate's cap, kept in one place
 
 LINE = "I asked my agent to find a typo in the sentence and it returned typo as the typo."
 
@@ -23,8 +23,8 @@ def main() -> None:
     text = line()
     if not text.strip():
         raise ValueError("entry is blank")
-    if len(text) > MAX_CHARS:
-        raise ValueError(f"line is {len(text)} chars (max {MAX_CHARS})")
+    if len(text) > MAX_LINE_CHARS:
+        raise ValueError(f"line is {len(text)} chars (max {MAX_LINE_CHARS})")
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(text + "\n")
